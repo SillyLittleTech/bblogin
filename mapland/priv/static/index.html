@@ -8,40 +8,107 @@
       name="description"
       content="Sign in to your sillylittle.tech mailbox with a tiny username helper."
     />
+    <script>
+      (function () {
+        try {
+          const savedTheme = localStorage.getItem("theme");
+          const systemTheme =
+            globalThis.matchMedia &&
+            globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.dataset.theme = savedTheme || systemTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+    />
     <link rel="stylesheet" href="/styles.css" />
     <script defer src="/app.js"></script>
   </head>
   <body>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+      <svg
+        class="sun-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg
+        class="moon-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
     <main class="shell">
-      <section class="card">
-        <p class="eyebrow">mail helper</p>
-        <h1>Silly little login.</h1>
-        <p class="lede">
-          Type your username and we'll point Outlook at the right mailbox.
-        </p>
+      <div class="layout">
+        <section class="panel brand-panel" aria-label="Site introduction">
+          <div class="avatar" aria-hidden="true">SLT</div>
+          <p class="eyebrow">mail helper</p>
+          <h1>Silly Little <span>Mail</span></h1>
+          <p class="lede">
+            Fast handoff to your mailbox. Enter your username and jump straight
+            into Outlook with the right account prefilled.
+          </p>
+        </section>
 
-        <form id="login-form" class="login-form">
-          <label for="username">Username</label>
-          <div class="input-row">
-            <input
-              id="username"
-              name="username"
-              type="text"
-              inputmode="email"
-              autocomplete="username"
-              placeholder="kiya"
-              aria-describedby="email-preview error-message"
-              required
-            />
-            <span class="suffix">@sillylittle.tech</span>
-          </div>
+        <section class="panel card">
+          <h2>Sign in</h2>
 
-          <p id="email-preview" class="preview">Your email will appear here.</p>
-          <p id="error-message" class="error" aria-live="polite"></p>
+          <form id="login-form" class="login-form">
+            <label for="username">Username</label>
+            <div class="input-row">
+              <input
+                id="username"
+                name="username"
+                type="text"
+                inputmode="email"
+                autocomplete="username"
+                placeholder="kiya"
+                aria-describedby="email-preview error-message"
+                required
+              />
+              <span class="suffix">@sillylittle.tech</span>
+            </div>
 
-          <button type="submit">Open Outlook</button>
-        </form>
-      </section>
+            <p id="email-preview" class="preview">Your email will appear here.</p>
+            <p id="error-message" class="error" aria-live="polite"></p>
+
+            <button type="submit">Open Outlook</button>
+          </form>
+        </section>
+      </div>
     </main>
   </body>
 </html>
