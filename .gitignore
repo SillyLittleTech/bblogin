@@ -2,3 +2,10 @@
 /elixir_app/_build/
 /elixir_app/deps/
 /.elixir_ls/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
