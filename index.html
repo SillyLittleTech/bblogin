@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silly Little Login</title>
+    <meta
+      name="description"
+      content="Sign in to your sillylittle.tech mailbox with a tiny username helper."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card">
+        <p class="eyebrow">mail helper</p>
+        <h1>Silly little login.</h1>
+        <p class="lede">
+          Type your username and we'll point Outlook at the right mailbox.
+        </p>
+
+        <form id="login-form" class="login-form">
+          <label for="username">Username</label>
+          <div class="input-row">
+            <input
+              id="username"
+              name="username"
+              type="text"
+              inputmode="email"
+              autocomplete="username"
+              placeholder="kiya"
+              aria-describedby="email-preview error-message"
+              required
+            />
+            <span class="suffix">@sillylittle.tech</span>
+          </div>
+
+          <p id="email-preview" class="preview">Your email will appear here.</p>
+          <p id="error-message" class="error" aria-live="polite"></p>
+
+          <button type="submit">Open Outlook</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
